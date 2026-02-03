@@ -49,17 +49,68 @@ ssh -i test_sample.pem ubuntu@IPv4 address
 ![instace running through SSH](screenshots/5.png)
 
 
-## Moving to Terraform (Infrastructure as Code)
-Once I understood the manual flow, I moved to Terraform.
-The goal here was not just to “make it work”, but to understand:
+## EC2 Provisioning Using Terraform (Hands-on Learnings)
 
-- How AWS concepts map to Terraform resources
-- How Terraform talks to AWS using the provider
-- How state is tracked locally
+After launching an EC2 instance manually, I provisioned an EC2 instance using Terraform to understand Infrastructure as Code in a practical way.
 
-I structured the project so each concern was separated:
+## IAM User & AWS CLI Setup
 
+To avoid using root credentials, I created a dedicated IAM user with programmatic access and the required permissions for EC2 and networking.
+
+I then configured AWS locally using:
+
+```
+aws configure
+```
+This allowed Terraform to authenticate with AWS using the configured IAM credentials.
+
+### IAM user creation
+![IAM user creation](screenshots/6.png)
+
+### aws configure
+![aws configure](screenshots/7.png)
+
+## Terraform Configuration
+
+The Terraform setup was structured into logical files to map AWS concepts clearly:
 - Provider configuration
-- Security group definition
+- Security group for SSH access
 - EC2 instance definition
-- Outputs
+- Output for public IP
+This helped keep the configuration readable and modular.
+
+## Applying Terraform
+
+Terraform was initialized and applied using:
+
+```
+terraform init
+terraform apply
+```
+
+## Verification
+
+The EC2 instance was verified in the AWS Console to ensure:
+- Instance state was running
+- Security group was attached
+- Public IP was assigned
+
+### EC2 provision through Terraform
+![EC2 provision through Terraform](screenshots/8.png)
+
+### EC2 created through Terraform
+![EC2 created through Terraform](screenshots/9.png)
+
+## Cleanup
+
+After verification, all resources were removed using:
+```
+terraform destroy
+```
+This reinforced the importance of cost control and clean infrastructure teardown.
+
+## Key Takeaways
+- IAM users are essential for secure automation
+- AWS CLI bridges local tools with AWS
+- Terraform reflects real AWS constraints, including billing
+- Infrastructure becomes repeatable and manageable with IaC
