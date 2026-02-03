@@ -1,0 +1,12 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Keys
+*.pem
+*.key
+
+# OS / Editor
+.DS_Store
+.vscode/
