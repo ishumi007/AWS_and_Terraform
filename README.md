@@ -24,10 +24,10 @@ While doing this, I paid attention to:
 - Which instance types were allowed under my account
 - How security groups control inbound SSH access
 - How AWS automatically attaches networking when using the default VPC
-[AWS Console > EC2 > Instances > Launch an Instance](1.png)
-[Create Key Pair](2.png)
-[ssh traffic allocation to my_ip](3.png)
-[Instance running](4.png)
+[AWS Console > EC2 > Instances > Launch an Instance](screenshots/1.png)
+[Create Key Pair](screenshots/2.png)
+[ssh traffic allocation to my_ip](screenshots/3.png)
+[Instance running](screenshots/4.png)
 The instance launched successfully, and seeing it move into the Running state made the architecture feel real instead of theoretical
 
 ## Accessing the Instance through SSH 
@@ -37,7 +37,7 @@ In terminal :
 ssh -i test_sample.pem ubuntu@IPv4 address
 
 ```
-[instace running through SSH](5.png)
+[instace running through SSH](screenshots/5.png)
 
 
 ## Moving to Terraform (Infrastructure as Code)
@@ -54,4 +54,3 @@ I structured the project so each concern was separated:
 - Security group definition
 - EC2 instance definition
 - Outputs
-
